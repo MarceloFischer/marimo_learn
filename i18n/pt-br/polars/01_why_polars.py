@@ -67,9 +67,9 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ## Choosing Polars over Pandas
+    ## Escolhendo Polars ao invés de Pandas
 
-    In this section we'll give a few reasons why Polars is a better choice than Pandas, along with examples.
+    Nesta seção, iremos apresentar algumas razões que fazem o Polars ser superior ao Pandas, seguido de exemplos.
     """)
     return
 
@@ -77,11 +77,11 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ### Intuitive syntax
+    ### Sintaxe Intuitiva
 
-    Polars' syntax is similar to PySpark and intuitive like SQL, making heavy use of **method chaining**. This makes it easy for data professionals to transition to Polars, and leads to an API that is more concise and readable than Pandas.
+    A sintaxe do Polars é semelhante à do PySpark e intuitiva como o SQL, fazendo uso intenso de **encadeamento de métodos**. Isso facilita a transição de profissionais de dados para o Polars e resulta em uma API mais concisa e legível que a do Pandas.
 
-    **Example.** In the next few cells, we contrast the code to perform a basic filter and aggregation of data with Pandas to the code required to accomplish the same task with `Polars`.
+    **Exemplo:** abaixo, realizamos uma filtragem e agregação básica de dados com Pandas e comparamos ao código necessário para realizar a mesma tarefa com Polars.
     """)
     return
 
@@ -92,28 +92,28 @@ def _():
 
     df_pd = pd.DataFrame(
         { 
-            "Gender": ["Male", "Female", "Male", "Female", "Male", "Female", 
-                       "Male", "Female", "Male", "Female"],
-            "Age": [13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
-            "Height_CM": [150.0, 170.0, 146.5, 142.0, 155.0, 165.0, 170.8, 130.0, 132.5, 162.0]
+            "gênero": ["Masculino", "Feminino", "Masculino", "Feminino", "Masculino", "Feminino", 
+                       "Masculino", "Feminino", "Masculino", "Feminino"],
+            "idade": [13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
+            "altura_cm": [150.0, 170.0, 146.5, 142.0, 155.0, 165.0, 170.8, 130.0, 132.5, 162.0]
         }
     )
 
-    # query: average height of male and female after the age of 15 years
+    # consulta: altura média de homens e mulheres acima dos 15 anos de idade
 
-    # step-1: filter
-    filtered_df_pd = df_pd[df_pd["Age"] > 15]
+    # passo-1: filtro
+    filtrado_df_pd = df_pd[df_pd["idade"] > 15]
 
-    # step-2: groupby and aggregation
-    result_pd = filtered_df_pd.groupby("Gender")["Height_CM"].mean()
-    result_pd
+    # passo-2: agrupamento e agregação
+    resultado_pd = filtrado_df_pd.groupby("gênero")["altura_cm"].mean()
+    resultado_pd
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    The same example can be worked out in Polars more concisely, using method chaining. Notice how the Polars code is essentially as readable as English.
+    O mesmo pode ser feito em Polars de forma mais concisa, utilizando encadeamento de métodos. Observe como o código em Polars é mais natural de ser lido como um texto em inglês.
     """)
     return
 
@@ -122,34 +122,35 @@ def _(mo):
 def _(pl):
     data_pl = pl.DataFrame(
         { 
-            "Gender": ["Male", "Female", "Male", "Female", "Male", "Female", 
-                       "Male", "Female", "Male", "Female"],
-            "Age": [13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
-            "Height_CM": [150.0, 170.0, 146.5, 142.0, 155.0, 165.0, 170.8, 130.0, 132.5, 162.0]
+            "gênero": ["Masculino", "Feminino", "Masculino", "Feminino", "Masculino", "Feminino", 
+                       "Masculino", "Feminino", "Masculino", "Feminino"],
+            "idade": [13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
+            "altura_cm": [150.0, 170.0, 146.5, 142.0, 155.0, 165.0, 170.8, 130.0, 132.5, 162.0]
         }
     )
 
-    # query: average height of male and female after the age of 15 years
+    # consulta: altura média de homens e mulheres acima dos 15 anos de idade
 
-    # filter, groupby and aggregation using method chaining
-    result_pl = data_pl.filter(pl.col("Age") > 15).group_by("Gender").agg(pl.mean("Height_CM"))
-    result_pl
+    # filtro, agrupamento e agregação utilizando encadeamento de métodos
+    resultado_pl = data_pl.filter(pl.col("idade") > 15).group_by("gênero").agg(pl.mean("altura_cm"))
+    resultado_pl
     return (data_pl,)
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    Notice how Polars uses a *method-chaining* approach, similar to PySpark, which makes the code more readable and expressive while using a *single line* to design the query.
-    Additionally, Polars supports SQL-like operations *natively*, that allows you to write SQL queries directly on polars dataframe:
+    Observe como o Polars usa uma abordagem de encadeamento de métodos, semelhante ao PySpark, o que torna o código mais legível e expressivo, ao mesmo tempo em que usa uma *única linha* para realizar a consulta.
+
+    Além disso, o Polars suporta operações do tipo SQL *nativamente*, o que permite escrever consultas SQL diretamente em um dataframe do Polars:
     """)
     return
 
 
 @app.cell
 def _(data_pl):
-    result = data_pl.sql("SELECT Gender, AVG(Height_CM) FROM self WHERE Age > 15 GROUP BY Gender")
-    result
+    resultado = data_pl.sql("SELECT gênero, AVG(altura_cm) FROM self WHERE idade > 15 GROUP BY gênero")
+    resultado
     return
 
 
