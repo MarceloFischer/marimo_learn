@@ -2,6 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = [
 #     "marimo",
+#     "openai==2.9.0",
 #     "pandas==2.2.3",
 #     "polars==1.22.0",
 # ]
@@ -21,14 +22,16 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md("""
-    # An introduction to Polars
+    mo.md(r"""
+    # Uma introdução ao Polars
 
-    _By [Koushik Khan](https://github.com/koushikkhan)._
+    _original por [Koushik Khan](https://github.com/koushikkhan)._
 
-    This notebook provides a birds-eye overview of [Polars](https://pola.rs/), a fast and user-friendly data manipulation library for Python, and compares it to alternatives like Pandas and PySpark.
+    _traduzido por [Marcelo Fischer](https://github.com/MarceloFischer) e [Gemini](https://gemini.google.com/app)_
 
-    Like Pandas and PySpark, the central data structure in Polars is **the DataFrame**, a tabular data structure consisting of named columns. For example, the next cell constructs a DataFrame that records the gender, age, and height in centimeters for a number of individuals.
+    Este notebook fornece uma visão geral do [Polars](https://pola.rs/), uma biblioteca de manipulação de dados rápida e fácil de usar para Python, e a compara com alternativas como Pandas e PySpark.
+
+    Assim como no Pandas e no PySpark, a estrutura de dados central no Polars é o **DataFrame**, uma estrutura de dados tabular composta por colunas nomeadas. Por exemplo, a próxima célula constrói um DataFrame que registra o gênero, a idade e a altura, em centímetros, para uma série de indivíduos.
     """)
     return
 
@@ -39,10 +42,10 @@ def _():
 
     df_pl = pl.DataFrame(
         { 
-            "gender": ["Male", "Female", "Male", "Female", "Male", "Female", 
-                       "Male", "Female", "Male", "Female"],
-            "age": [13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
-            "height_cm": [150.0, 170.0, 146.5, 142.0, 155.0, 165.0, 170.8, 130.0, 132.5, 162.0]
+            "gênero": ["Masculino", "Feminino", "Masculino", "Feminino", "Masculino", "Feminino", 
+                       "Masculino", "Feminino", "Masculino", "Feminino"],
+            "idade": [13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
+            "altura_cm": [150.0, 170.0, 146.5, 142.0, 155.0, 165.0, 170.8, 130.0, 132.5, 162.0]
         }
     )
     df_pl
@@ -52,11 +55,11 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    Unlike Python's earliest DataFrame library Pandas, Polars was designed with performance and usability in mind — Polars can scale to large datasets with ease while maintaining a simple and intuitive API.
+    Ao contrário da Pandas, a biblioteca pioneira de DataFrame do Python, o Polars foi projetado com desempenho e usabilidade em mente — o Polars pode escalar para grandes conjuntos de dados com facilidade, mantendo uma API simples e intuitiva.
 
-    Polars' performance is due to a number of factors, including its implementation in rust and its ability to perform operations in a parallelized and vectorized manner. It supports a wide range of data types, advanced query optimizations, and seamless integration with other Python libraries, making it a versatile tool for data scientists, engineers, and analysts. Additionally, Polars provides a lazy API for deferred execution, allowing users to optimize their workflows by chaining operations and executing them in a single pass.
+    O desempenho do Polars deve-se a vários fatores, incluindo sua implementação em Rust e sua capacidade de realizar operações de maneira paralelizada e vetorizada. Ele suporta uma ampla gama de tipos de dados, otimizações avançadas de consulta e integração perfeita com outras bibliotecas Python, tornando-o uma ferramenta versátil para cientistas de dados, engenheiros e analistas. Além disso, o Polars fornece uma API preguiçosa (lazy API) para execução atrasada, permitindo que os usuários otimizem seus fluxos de trabalho encadeando operações e executando-as em uma única chamada.
 
-    With its focus on speed, scalability, and ease of use, Polars is quickly becoming a go-to choice for data professionals looking to streamline their data processing pipelines and tackle large-scale data challenges.
+    Com seu foco em velocidade, escalabilidade e facilidade de uso, o Polars está rapidamente se tornando uma escolha preferencial para profissionais de dados que buscam agilizar seus pipelines de processamento de dados e enfrentar desafios de dados em larga escala.
     """)
     return
 
