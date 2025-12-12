@@ -157,9 +157,9 @@ def _(data_pl):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ### A large collection of built-in APIs
+    ### Uma Extensa Coleção de APIs Nativas
 
-    Polars has a comprehensive API that enables to perform virtually any operation using built-in methods. In contrast, Pandas often requires more complex operations to be handled using the `apply` method with a lambda function. The issue with `apply` is that it processes rows sequentially, looping through the DataFrame one row at a time, which can be inefficient. By leveraging Polars' built-in methods, you can operate on entire columns at once, unlocking the power of **SIMD (Single Instruction, Multiple Data)** parallelism. This approach not only simplifies your code but also significantly improves performance.
+    O Polars possui uma API abrangente que permite realizar praticamente qualquer operação usando métodos nativos. Em contraste, o Pandas frequentemente exige que operações mais complexas sejam tratadas usando o método `apply` com uma função lambda. O problema com o `apply` é que ele processa as linhas sequencialmente, percorrendo o DataFrame uma linha por vez (como se fosse um `for` loop), o que pode ser ineficiente. Ao aproveitar os métodos nativos do Polars, você pode operar em colunas inteiras de uma vez, liberando o poder do paralelismo **SIMD (Single Instruction, Multiple Data)**. Essa abordagem não apenas simplifica seu código, mas também melhora significativamente o desempenho.
     """)
     return
 
