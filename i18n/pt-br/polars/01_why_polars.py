@@ -167,21 +167,21 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ### Query optimization 📈
+    ### Otimização de Consultas 📈
 
-    A key factor behind Polars' performance lies in its **evaluation strategy**. While Pandas defaults to **eager execution**, executing operations in the exact order they are written, Polars offers both **eager and lazy execution**. With lazy execution, Polars employs a **query optimizer** that analyzes all required operations and determines the most efficient way to execute them. This optimization can involve reordering operations, eliminating redundant calculations, and more.
+    Um fator chave por trás do desempenho do Polars reside em sua **estratégia de avaliação**. Enquanto o Pandas adota a **execução eager (imediata)** por padrão, executando operações na ordem exata em que são escritas, o Polars oferece tanto a **execução eager quanto a lazy (preguiçosa)**. Com a execução lazy, o Polars emprega um **otimizador de consultas** que analisa todas as operações necessárias e determina a forma mais eficiente de executá-las. Essa otimização pode envolver a reordenação de operações, a eliminação de cálculos redundantes e muito mais.
 
-    For example, consider the following expression to calculate the mean of the `Number1` column for categories "A" and "B" in the `Category` column:
+    Por exemplo, considere a seguinte expressão para calcular a média da coluna `Número1` para as categorias "A" e "B" na coluna `Categoria`:
 
     ```python
     (
         df
-        .groupby(by="Category").agg(pl.col("Number1").mean())
-        .filter(pl.col("Category").is_in(["A", "B"]))
+        .groupby(by="Categoria").agg(pl.col("Número1").mean())
+        .filter(pl.col("Categoria").is_in(["A", "B"]))
     )
     ```
 
-    If executed eagerly, the `groupby` operation would first be applied to the entire DataFrame, followed by filtering the results by `Category`. However, with **lazy execution**, Polars can optimize this process by first filtering the DataFrame to include only the relevant categories ("A" and "B") and then performing the `groupby` operation on the reduced dataset. This approach minimizes unnecessary computations and significantly improves efficiency.
+    Se executada de forma eager (imediata), a operação `groupby` seria primeiro aplicada a todo o DataFrame, seguida pela filtragem dos resultados por `Categoria`. No entanto, com a **execução lazy (preguiçosa)**, o Polars pode otimizar esse processo filtrando primeiro o DataFrame para incluir apenas as categorias relevantes ("A" e "B") e, em seguida, realizando a operação `groupby` no conjunto de dados reduzido. Essa abordagem minimiza cálculos desnecessários e melhora significativamente a eficiência.
     """)
     return
 
@@ -189,29 +189,29 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ### Scalability — handling large datasets in memory ⬆️
+    ### Escalabilidade — lidando com grandes conjuntos de dados em memória ⬆️
 
-    Pandas is limited by its single-threaded design and reliance on Python, which makes it inefficient for processing large datasets. Polars, on the other hand, is built in Rust and optimized for parallel processing, enabling it to handle datasets that are orders of magnitude larger.
+    O Pandas é limitado por seu design de thread única e pela dependência do Python, o que o torna ineficiente para processar grandes conjuntos de dados. O Polars, por outro lado, é construído em Rust e otimizado para processamento paralelo, permitindo que ele lide com conjuntos de dados que são ordens de magnitude maiores.
 
-    **Example: Processing a Large Dataset**
-    In Pandas, loading a large dataset (e.g., 10GB) often results in memory errors:
+    **Exemplo: Processando um Conjunto de Dados Grande**
+    No Pandas, carregar um conjunto de dados grande (ex: 10GB) frequentemente resulta em erros de memória:
 
     ```python
-    # This may fail with large datasets
-    df = pd.read_csv("large_dataset.csv")
+    # Isto pode falhar com datasets muito grandes
+    df = pd.read_csv("dataset_grande.csv")
     ```
 
-    In Polars, the same operation runs quickly, without memory pressure:
+    No Polars, a mesma operação é executada rapidamente, sem pressão de memória:
 
     ```python
-    df = pl.read_csv("large_dataset.csv")
+    df = pl.read_csv("dataset_grande.csv")
     ```
 
-    Polars also supports lazy evaluation, which allows you to optimize your workflows by deferring computations until necessary. This is particularly useful for large datasets:
+    O Polars também suporta avaliação lazy (preguiçosa), que permite otimizar seus fluxos de trabalho adiando os cálculos até que sejam necessários. Isso é particularmente útil para grandes conjuntos de dados:
 
     ```python
-    df = pl.scan_csv("large_dataset.csv")  # Lazy DataFrame
-    result = df.filter(pl.col("A") > 1).groupby("A").agg(pl.sum("B")).collect()  # Execute
+    df = pl.scan_csv("dataset_grande.csv")  # Lazy DataFrame (Datarame preguiçoso)
+    result = df.filter(pl.col("A") > 1).groupby("A").agg(pl.sum("B")).collect()  # Executa a operação
     ```
     """)
     return
