@@ -220,33 +220,33 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ### Compatibility with other machine learning libraries 🤝
+    ### Compatibilidade com Outras Bibliotecas de Aprendizado de Máquina 🤝
 
-    Polars integrates seamlessly with popular machine learning libraries like Scikit-learn, PyTorch, and TensorFlow. Its ability to handle large datasets efficiently makes it an excellent choice for preprocessing data before feeding it into ML models.
+    O Polars se integra perfeitamente com bibliotecas populares de aprendizado de máquina, como Scikit-learn, PyTorch e TensorFlow. Sua capacidade de lidar com grandes conjuntos de dados de forma eficiente o torna uma excelente escolha para o pré-processamento de dados antes de alimentá-los em modelos de ML (machine learning [aprendizado de máquina]).
 
-    **Example: Preprocessing Data for Scikit-learn**
+    **Exemplo: Pré-processamento de dados para Scikit-learn**
 
     ```python
     import polars as pl
     from sklearn.linear_model import LinearRegression
 
-    # Load and preprocess data
-    df = pl.read_csv("data.csv")
-    X = df.select(["feature1", "feature2"]).to_numpy()
-    y = df.select("target").to_numpy()
+    # Carregar e pré-processar dados
+    df = pl.read_csv("dados.csv")
+    X = df.select(["variável1", "variável2"]).to_numpy()
+    y = df.select("alvo").to_numpy()
 
-    # Train a model
-    model = LinearRegression()
-    model.fit(X, y)
+    # Treina o modelo de ML (machine learning [aprendizado de máquina])
+    modelo = LinearRegression()
+    modelo.fit(X, y)
     ```
 
-    Polars also supports conversion to other formats like NumPy arrays and Pandas DataFrames, ensuring compatibility with virtually any ML library:
+    O Polars também suporta a conversão para outros formatos, como NumPy arrays e Pandas Dataframes, garantindo compatibilidade com praticamente qualquer biblioteca de ML:
 
     ```python
-    # Convert to Pandas DataFrame
+    # Convete para Pandas Dataframe
     pandas_df = df.to_pandas()
 
-    # Convert to NumPy array
+    # Converte para NumPy array
     numpy_array = df.to_numpy()
     ```
     """)
