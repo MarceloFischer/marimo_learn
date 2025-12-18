@@ -256,16 +256,16 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ### Easy to use, with room for power users
+    ### Fácil de usar, com oportunidades para usuários avançados
 
-    Polars supports advanced operations like
+    O Polars suporta operações avançadas como:
 
-    - **date handling**
-    - **window functions**
-    - **joins**
-    - **nested data types**
+    - **manipulação de datas (date handling)**
+    - **Funções de janela (window functions)**
+    - **junções (joins)**
+    - **tipos de dados aninhados (nested data types)**
 
-    which is making it a versatile tool for data manipulation.
+    o que o torna uma ferramenta versátil para manipulação de dados.
     """)
     return
 
@@ -273,11 +273,11 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ## Why not PySpark?
+    ## Por que não o PySpark?
 
-    While **PySpark** is versatile tool that has transformed the way big data is handled and processed in Python, its **complex setup process** can be intimidating, especially for beginners. In contrast, **Polars** requires minimal setup and is ready to use right out of the box, making it more accessible for users of all skill levels.
+    Embora o **PySpark** seja uma ferramenta versátil que transformou a maneira como o big data é gerenciado e processado em Python, seu **processo de configuração complexo** pode ser intimidante, especialmente para iniciantes. Em contraste, o **Polars** exige uma configuração mínima e está pronto para uso imediato, tornando-o mais acessível para usuários de todos os níveis de habilidade.f
 
-    When deciding between the two, **PySpark** is the preferred choice for processing large datasets distributed across a **multi-node cluster**. However, for computations on a **single-node machine**, **Polars** is an excellent alternative. Remarkably, Polars is capable of handling datasets that exceed the size of the available RAM, making it a powerful tool for efficient data processing even on limited hardware.
+    Ao decidir entre os dois, o **PySpark** é a escolha preferida para processar grandes conjuntos de dados distribuídos em um **cluster de múltiplos nós**. No entanto, para computações em **uma máquina de nó único**, o Polars é uma excelente alternativa. Surpreendentemente, o Polars é capaz de lidar com conjuntos de dados que excedem o tamanho da memória RAM disponível, tornando-o uma ferramenta poderosa para o processamento eficiente de dados, mesmo em hardware limitado.
     """)
     return
 
@@ -285,11 +285,16 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    ## 🔖 References
+    ## 🔖 Referências
 
     - [Polars official website](https://pola.rs/)
     - [Polars vs. Pandas](https://blog.jetbrains.com/pycharm/2024/07/polars-vs-pandas/)
     """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
